@@ -2,6 +2,7 @@ public class Funcionario{
     private int id;
     private double salario;
     private String nome;
+    private double bonus;
 
     public Funcionario(int id, double salario, String nome){
         this.id = id;
@@ -27,6 +28,20 @@ public class Funcionario{
 
     public double getSalario(){
         return this.salario;
+    }
+
+
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
+    }
+
+    public double getBonus() {
+        return this.bonus;
+    }
+    
+
+    public double getSalarioFinal(){
+        return this.salario + this.bonus;
     }
 
     public int getId(){
