@@ -1,9 +1,9 @@
-public class VetorDinamico<T> {
-    private T[] elementos;
+public class Vetor<T> {
+    private T elementos[];
     private int tamanho;
 
     @SuppressWarnings("unchecked")
-    public VetorDinamico(int quantidade) {
+    public Vetor(int quantidade) {
         elementos = (T[]) new Object[quantidade];
         this.tamanho = 0;
     }
@@ -19,7 +19,7 @@ public class VetorDinamico<T> {
 
     @SuppressWarnings("unchecked")
     private void expandir() {
-        T[] novo = (T[]) new Object[elementos.length * 2];
+        T[] novo = (T[]) new String[elementos.length * 2];
 
         for (int i = 0; i < elementos.length; i++) {
             novo[i] = elementos[i];
@@ -33,13 +33,13 @@ public class VetorDinamico<T> {
         if (tamanho != 0) {
             System.out.print("[");
             for (int i = 0; i < elementos.length; i++) {
+                if (elementos[i] != null) {
+                    System.out.print(elementos[i]);
+                    if (i < elementos.length - 1) {
+                        System.out.print(", ");
 
-                System.out.print(elementos[i]);
-                if (i < elementos.length - 1) {
-                    System.out.print(", ");
-
+                    }
                 }
-
             }
             System.out.println("]");
         }
@@ -49,8 +49,7 @@ public class VetorDinamico<T> {
     @SuppressWarnings("unchecked")
     private void reduzir() {
         if (tamanho <= elementos.length / 4) {
-
-            T[] novo = (T[]) new Object[elementos.length / 2];
+            T[] novo = (T[]) new String[elementos.length / 2];
             for (int i = 0; i < tamanho; i++) {
                 novo[i] = elementos[i];
             }

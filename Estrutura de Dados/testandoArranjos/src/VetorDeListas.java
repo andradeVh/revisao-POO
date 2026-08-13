@@ -1,19 +1,17 @@
+public class VetorDeListas<T> {
+    private VetorEstatico<T>[] nomesporletra;
 
-
-public class VetorDeListas {
-
-    private VetorEstatico[] nomesporletra;
-
+    @SuppressWarnings("unchecked")
     public VetorDeListas() {
-        nomesporletra = new VetorEstatico[26];
+        nomesporletra = (VetorEstatico<T>[]) new VetorEstatico[26];
         for (int i = 0; i < nomesporletra.length; i++){
-            nomesporletra[i] = new VetorEstatico(20);
+            nomesporletra[i] = new VetorEstatico<T>(20);
         }
     }
 
-    public void inserir(String nome){
+    public void inserir(T nome){
         // if tamanho < bla bla
-        char letra = Character.toUpperCase(nome.charAt(0));
+        char letra = Character.toUpperCase(nome.toString().charAt(0));
         int indice = letra - 'A';
 
         nomesporletra[indice].inserir(nome);
