@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Vetor<T> {
     private T elementos[];
     private int tamanho;
@@ -71,5 +73,35 @@ public class Vetor<T> {
         tamanho--;
         reduzir();
 
+    }
+
+    public int buscarValor(T elemento) {
+        for (int i = 0; i < tamanho; i++) {
+            if (elementos[i].equals(elemento)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @SuppressWarnings("unchecked")
+    public void inserirAleatorio(int valores) {
+        int valorAleatorio = 0;
+
+        for (int i = 0; i < valores; i++) {
+            valorAleatorio = new Random().nextInt(1000);
+
+            if (buscarValor((T) Integer.valueOf(valorAleatorio)) == -1) {
+                for (int j = 0; j < tamanho; j++) {
+                    if ((Integer) elementos[j] < valorAleatorio) {
+                        inserir((T) Integer.valueOf(valorAleatorio));
+                        break;
+                    }
+                }
+
+            }
+        }
+
+        return;
     }
 }
