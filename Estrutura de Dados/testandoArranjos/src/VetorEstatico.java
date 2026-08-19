@@ -100,7 +100,7 @@ public class VetorEstatico<T> {
 
     public int buscarValor(T elemento) {
         for (int i = 0; i < tamanho; i++) {
-            if (elementos[i].equals(elemento)) {
+            if (elementos[i] != null && elementos[i].equals(elemento)) {
                 return i;
             }
         }
@@ -110,24 +110,41 @@ public class VetorEstatico<T> {
     @SuppressWarnings("unchecked")
     public void inserirAleatorio(int valores) {
         int valorAleatorio = 0;
+        Random random = new Random();
 
         for (int i = 0; i < valores; i++) {
-            valorAleatorio = new Random().nextInt(1000);
-            if (buscarValor((T) Integer.valueOf(valorAleatorio)) == -1) {
+            valorAleatorio = random.nextInt(1000);
 
-                for (int j = 0; j < tamanho; j++) {
-                    if (valorAleatorio < (Integer) elementos[j]) {
-                        inserir(j, (T) Integer.valueOf(valorAleatorio));
-                        break;
+            if (buscarValor((T) Integer.valueOf(valorAleatorio)) != -1) {
+                i--;
+            }
+
+            else {
+
+                if (tamanho == 0) {
+                    inserir(0, (T) Integer.valueOf(valorAleatorio));
+                } else {
+                    int tamanhoAtual = tamanho;
+                    for (int j = 0; j < tamanhoAtual; j++) {
+                        if (elementos[j] != null) {
+
+                            if (valorAleatorio < (Integer) elementos[j]) {
+                                inserir(j, (T) Integer.valueOf(valorAleatorio));
+                                break;
+                            }
+
+                            if (j == tamanho - 1 && valorAleatorio > (Integer) elementos[j]) {
+                                inserir(tamanho, (T) Integer.valueOf(valorAleatorio));
+                                break;
+                            }
+
+                        }
+
                     }
                 }
-
             }
         }
-
-        return;
     }
-
     // public VetorEstatico(int quantidade){
     // elementos = new String[quantidade];
     // }
